@@ -1,7 +1,0 @@
--I/home/denys/Projects/ChatQTP/src
--I/home/denys/Projects/ChatQTP/build/src
--D_GNU_SOURCE
--D_LARGEFILE64_SOURCE
--o
-/home/denys/Projects/ChatQTP/build/src/chatqtpconfig.moc
-/home/denys/Projects/ChatQTP/build/src/chatqtpconfig.h
