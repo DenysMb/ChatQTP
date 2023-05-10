@@ -16,4 +16,6 @@ public:
     Q_INVOKABLE void restoreWindowGeometry(QQuickWindow *window, const QString &group = QStringLiteral("main")) const;
     // Save current window geometry
     Q_INVOKABLE void saveWindowGeometry(QQuickWindow *window, const QString &group = QStringLiteral("main")) const;
+    // Do the request
+    Q_INVOKABLE void request(QObject *responseField, const QString& text) const;
 };

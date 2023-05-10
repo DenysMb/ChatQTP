@@ -1,0 +1,59 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "chatqtp",
+			"destination" : "share/applications",
+			"paths" : 
+			[
+				"org.kde.chatqtp.desktop"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "chatqtp",
+			"destination" : "share/metainfo",
+			"paths" : 
+			[
+				"org.kde.chatqtp.metainfo.xml"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}
