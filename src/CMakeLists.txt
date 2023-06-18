@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-# SPDX-FileCopyrightText: %{CURRENT_YEAR} %{AUTHOR} <%{EMAIL}>
+# SPDX-FileCopyrightText: 2023 Denys Madureira <denysmb@zoho.com>
 
 add_executable(chatqtp
     main.cpp

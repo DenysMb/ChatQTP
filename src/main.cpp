@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
-    SPDX-FileCopyrightText: %{CURRENT_YEAR} %{AUTHOR} <%{EMAIL}>
+    SPDX-FileCopyrightText: 2023 Denys Madureira <denysmb@zoho.com>
 */
 
 #include <QApplication>
@@ -32,15 +32,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
                          // The program version string.
                          QStringLiteral(CHATQTP_VERSION_STRING),
                          // Short description of what the app does.
-                         i18n("Application Description"),
+                         i18n("Quickly ask questions to ChatGPT"),
                          // The license this code is released under.
                          KAboutLicense::GPL,
                          // Copyright Statement.
-                         i18n("(c) %{CURRENT_YEAR}"));
-    aboutData.addAuthor(i18nc("@info:credit", "%{AUTHOR}"),
+                         i18n("(c) 2023"));
+    aboutData.addAuthor(i18nc("@info:credit", "Denys Madureira"),
                         i18nc("@info:credit", "Author Role"),
-                        QStringLiteral("%{EMAIL}"),
-                        QStringLiteral("https://yourwebsite.com"));
+                        QStringLiteral("denysmb@zoho.com"),
+                        QStringLiteral("https://github.com/DenysMb"));
     KAboutData::setApplicationData(aboutData);
 
     QQmlApplicationEngine engine;

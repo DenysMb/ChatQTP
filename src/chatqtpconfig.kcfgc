@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: %{CURRENT_YEAR} %{AUTHOR} <%{EMAIL}>
+# SPDX-FileCopyrightText: 2023 Denys Madureira <denysmb@zoho.com>
 # SPDX-License-Identifier: LGPL-2.0-or-later
 
 File=chatqtpconfig.kcfg
