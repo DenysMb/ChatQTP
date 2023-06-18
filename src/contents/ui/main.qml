@@ -113,7 +113,9 @@ Kirigami.ApplicationWindow {
             icon.name: "edit-copy"
             tooltip: i18n("Copy the response")
             onTriggered: {
+                responseField.selectAll();
                 responseField.copy();
+                responseField.deselect();
             }
         }
 
