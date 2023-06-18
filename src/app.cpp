@@ -40,63 +40,43 @@ void App::request(QObject *responseField, const QString& text) const
 
   QNetworkAccessManager *manager = new QNetworkAccessManager();
 
-  QNetworkRequest request;
-  request.setUrl(QUrl("https://api.openai.com/v1/chat/completions"));
-  request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-  request.setRawHeader("Authorization", "Bearer YOUR-TOKEN-HERE");
+    QUrl url("https://chatbot.theb.ai/api/chat-process");
 
-  QString jsonBody = QString(R"({
-        "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": "%1"}]
-  })").arg(text);
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::UserAgentHeader, "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-  QNetworkReply *reply = manager->post(request, jsonBody.toUtf8());
+    QString jsonData = QString("{\"prompt\":\"%1\",\"options\":{}}").arg(text);
 
-  connect(reply, &QNetworkReply::finished, [=]() {
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray responseData = reply->readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
+    QNetworkReply *reply = manager->post(request, jsonData.toUtf8());
 
-        if (!jsonDoc.isNull()) {
+    // Connect the signals and slots to handle the response
+    connect(reply, &QNetworkReply::readyRead, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            QString response = QString::fromUtf8(data);
+
+            QStringList objects = response.split('\n');
+            QString lastObject = objects.last();
+            QJsonDocument jsonDoc = QJsonDocument::fromJson(lastObject.toUtf8());
             QJsonObject jsonObj = jsonDoc.object();
+            QString textValue = jsonObj.value("text").toString();
 
-            if (jsonObj.contains("choices") && jsonObj["choices"].isArray()) {
-                QJsonArray choicesArray = jsonObj["choices"].toArray();
+            // Update the responseField with the received data
+            responseField->setProperty("text", textValue);
 
-                if (!choicesArray.isEmpty()) {
-                    QJsonValue choiceValue = choicesArray.at(0);
+            return;
+        } else {
+            // Handle the error case
+            qDebug() << "Error: " << reply->errorString();
 
-                    if (choiceValue.isObject()) {
-                        QJsonObject choiceObj = choiceValue.toObject();
-
-                        if (choiceObj.contains("message") && choiceObj["message"].isObject()) {
-                            QJsonObject messageObj = choiceObj["message"].toObject();
-
-                            if (messageObj.contains("content") && messageObj["content"].isString()) {
-                              QString content = messageObj["content"].toString();
-
-                              qDebug() << "Content:" << content;
-
-                              std::cout << "IF!" << std::endl;
-
-                              responseField->setProperty("text", content);
-
-                              return;
-                            }
-                        }
-                    }
-                }
-            }
+            responseField->setProperty("text", reply->errorString());
         }
-    } else {
-      // Tratar erros
-      qDebug() << reply->errorString();
 
-      std::cout << "ELSE!" << std::endl;
+        // Clean up the reply and manager
+        reply->deleteLater();
+        manager->deleteLater();
 
-      responseField->setProperty("text", reply->errorString());
-    }
-    reply->deleteLater();
-    responseField->setProperty("placeholderText", "I am waiting for your question...");
-  });
+        responseField->setProperty("placeholderText", "I am waiting for your question...");
+    });
 }

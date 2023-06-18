@@ -6,7 +6,7 @@ Build Directory Count=1
 Current Build Directory Index-Host System=0
 
 [CMake][CMake Build Directory 0]
-Build Directory Path=/home/denys/Projects/ChatQTP/build
+Build Directory Path=/storage/Projects/Contributions/KDE - Applications/ChatQTP/build
 Build Type=Debug
 CMake Binary=/usr/bin/cmake
 CMake Executable=/usr/bin/cmake
@@ -29,7 +29,7 @@ Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x03\x00\x00\x00\x0e\x00C\x00h\x00a\x00t\x00Q\x00T\x00P\x00\x00\x00\x06\x00s\x00r\x00c\x00\x00\x00\x0e\x00c\x00h\x00a\x00t\x00q\x00t\x00p)
 Dependency Action=Build
 EnvironmentGroup=
-Executable=file:///home/denys/Projects/ChatQTP
+Executable=file:///storage/Projects/Contributions/KDE - Applications/ChatQTP
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Kill Before Executing Again=4194304
 Project Target=ChatQTP,src,chatqtp
